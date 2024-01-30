@@ -9,6 +9,11 @@ require('./models/connection');
 
 var indexRouter = require('./routes/index');
 var tripRouter = require('./routes/trip');
+<<<<<<< HEAD
+=======
+var cartRouter = require('./routes/cart');
+var purchaseRouter = require('./routes/purchase');
+>>>>>>> 39945797c201205e0b4df9131646a83c9809bff5
 
 var app = express();
 
@@ -23,5 +28,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/trip', tripRouter);
+<<<<<<< HEAD
+=======
+app.use('/cart', cartRouter);
+app.use('/purchase', purchaseRouter)
+>>>>>>> 39945797c201205e0b4df9131646a83c9809bff5
 
 module.exports = app;
