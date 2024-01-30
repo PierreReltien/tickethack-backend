@@ -8,11 +8,6 @@ const Trip = require('../models/trips');
 
 
 router.get('/:departure/:arrival/:date', (req, res) => {
-	
-	if(!req.params.departure || !req.params.arrival || !req.params.date) 
-	{
-	return res.json({ result: false, error: 'Something is missing'}) 
-	}
 
 	Trip.find({
 		"departure": req.params.departure, 
