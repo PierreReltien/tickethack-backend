@@ -5,7 +5,6 @@ const purchaseSchema = mongoose.Schema({
 	arrival: String,
 	date: Date,
 	price: Number,
-
 });
 
 const Purchase = mongoose.model('purchases', purchaseSchema);

@@ -15,13 +15,29 @@ router.post('/', (req, res) => {
         arrival,
         date,
         price,
-        isActive: false,
+        isActive: true,
     });
 
     newCart.save().then(data => {
         res.json({ result: true, Cart: data });
     });
 });
+
+router.put("/update/:id", (req, res) => {
+
+    Cart.findOne({ _id: req.params.id }).then((cartFound) => {
+
+        if (!cartFound) {
+            return res.json({ result: false, error: "Cart not found" })
+        } else {
+            Cart.updateOne({ _id: req.params.id }, { isActive: false }).then((cartUpdated) => {
+                return res.json({ result: true, cartUpdated })
+            })
+        }
+    })
+})
+
+
 
 
 
