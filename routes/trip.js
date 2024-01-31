@@ -20,16 +20,16 @@ console.log(beginning);
 console.log(ending);
 
 
-
 	Trip.find({
-		departure: req.params.departure, 
-		arrival : req.params.arrival, 
+		departure: {$regex: new RegExp( req.params.departure,"i")}, 
+		arrival : {$regex: new RegExp(req.params.arrival,"i")}, 
 		date: {$gt : beginning, $lt : ending}})
 
 	.then(data => {
 		console.log(data)
 
 		if(data.length>0) {
+
 			res.json({ result: true, trip : data })
 		} else {
 			res.json({ result: false, error :'No trip availlable' })
