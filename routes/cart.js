@@ -3,25 +3,32 @@ var router = express.Router();
 const fetch = require('node-fetch');
 
 const Cart = require('../models/carts');
+const Trip = require('../models/trips')
 
 
 
-router.post('/', (req, res) => {
+router.get('/:id', (req, res) => {
 
-    const { departure, arrival, date, price } = req.body;
+    const { id } = req.params;
 
-    const newCart = new Cart({
-        departure,
-        arrival,
-        date,
-        price,
-        isActive: true,
-    });
+    Trip.findById(id).then(data => {
 
-    newCart.save().then(data => {
-        res.json({ result: true, Cart: data });
-    });
-});
+        console.log(data)
+
+        const newCart = new Cart({
+            departure: data.departure,
+            arrival: data.arrival,
+            date: data.date,
+            price: data.price,
+            isActive: true,
+        });
+
+        newCart.save().then(data => {
+            res.json({ result: true, Cart: data });
+        });
+
+    })
+})
 
 router.put("/update/:id", (req, res) => {
 
